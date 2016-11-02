@@ -1,0 +1,50 @@
+<#include "header.html">
+
+<div id="content">
+
+<form id="form1" name="form1" method="post" action="/user/update">
+<table id="msgadd" width="90%" cellspacing="1" bgcolor="#eee">
+  <tr>
+    <td width="30%">Open ID</td>
+    <td class="left"><input class="input" type="text" name="openid" id="openid" value="${user.openid}" /></td>
+  </tr>
+  <tr>
+    <td>用户名称</td>
+    <td class="left"><input class="input" name="username" id="username" value="${user.username}" /></td>
+  </tr>
+  <tr>
+    <td>用户名称</td>
+    <td class="left"><input class="input" name="userid" id="userid" value="${user.userid}" /></td>
+  </tr>
+  <tr>
+    <td>部门</td>
+    <td class="left">
+      <select class="input select" name="department" id="department">
+        <#list depts as dept>
+          <option value="${dept.id}" <#if dept.id == user.department.id>  selected="selected"</#if>>${dept.name}</option>
+        </#list>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>角色</td>
+    <td class="left checkbox">
+      <#list roles as role>
+        <#assign check="" />
+        <#list user.roles as urole>
+          <#if role.id == urole.id><#assign check=" checked='checked'" /></#if>
+        </#list>
+        <input type="checkbox" ${check} class="checkbox" name="roles" id="roles" value="${role.id}" />${role.name}&nbsp;&nbsp;&nbsp;&nbsp;
+      </#list>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
+  </tr>
+</table>
+<input type="hidden" name="id" id="id" value="${user.id}" />
+</form>
+
+</div>
+
+<#include "footer.html">
