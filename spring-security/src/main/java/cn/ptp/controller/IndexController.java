@@ -1,19 +1,32 @@
 package cn.ptp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 //@RequestMapping("/")
 public class IndexController
 {
-    private ModelAndView mv = new ModelAndView();
-
     @RequestMapping("/")
-    public ModelAndView index() {
-        mv.setViewName("index");
-		mv.addObject("name", "ison.zzzz");
-        return mv;
+    public String index() {
+        return "index";
     }
+
+    @RequestMapping("/userd/index")
+    public String userIndex() {
+        return "userd/index";
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
+
 }

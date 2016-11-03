@@ -1,0 +1,24 @@
+<#include "header.html">
+
+<div id="content">
+
+<form id="form1" name="form1" method="post" action="/message/update">
+<table id="msgadd" width="90%" cellspacing="1" bgcolor="#eee">
+  <tr>
+    <td width="30%">姓名</td>
+    <td class="left"><input type="text" name="name" id="name" value="${message.getName()}" /></td>
+  </tr>
+  <tr>
+    <td>留言</td>
+    <td class="left"><textarea name="msg" id="msg" cols="45" rows="5">${message.getMsg()}</textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
+  </tr>
+</table>
+<input type="hidden" name="id" id="id" value="${message.getId()}" />
+</form>
+
+</div>
+
+<#include "footer.html">

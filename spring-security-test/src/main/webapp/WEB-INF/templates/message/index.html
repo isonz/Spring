@@ -1,0 +1,41 @@
+<#include "header.html">
+
+    <div id="content">
+        <table id="msglist" width="90%" cellspacing="1" bgcolor="#eee">
+            <#assign k=1 />
+            <#list items as item>
+                <tr>
+                    <td class="listnum" width="5%">${item.id}</td>
+                    <td width="5%"><img src="/images/${k}.gif" /></td>
+                    <td width="15%"><a href="/message/sql?name=${item.name}">${item.name}</a></td>
+                    <td>${item.msg}</td>
+                    <td width="7%">${((item.create_at*1000)?number_to_datetime)!}</td>
+                    <td width="7%">${(item.date?string("yyyy-MM-dd"))!}</td>
+                    <td width="5%">${item.days}</td>
+                    <td width="7%">${item.update_at}</td>
+                    <td width="5%">${item.ip}</td>
+                    <td width="5%"><a href="/message/edit/${item.id}">修改</a></td>
+                    <td width="5%"><a href="/message/delete/${item.id}">删除</a></td>
+                </tr>
+                <#if (k>1)> <#assign k=1 /> <#else> <#assign k=k+1 /> </#if>
+            </#list>
+        </table>
+
+        <form id="form1" name="form1" method="post" action="/message/add">
+            <table id="msgadd" width="90%" cellspacing="1" bgcolor="#eee">
+                <tr>
+                    <td width="30%">姓名</td>
+                    <td class="left"><input type="text" name="name" id="name" /></td>
+                </tr>
+                <tr>
+                    <td>留言</td>
+                    <td class="left"><textarea name="msg" id="msg" cols="45" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+<#include "footer.html">
