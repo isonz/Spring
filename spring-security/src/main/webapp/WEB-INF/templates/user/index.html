@@ -1,5 +1,12 @@
 <#include "header.html">
 
+    <div style="text-align: right;">Hello : ${username}
+        <form action="/logout" method="post">
+            <input type="submit" value="注销"/>
+            <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+        </form>
+    </div>
+
     <div id="content">
         <table id="msglist" width="90%" cellspacing="1" bgcolor="#eee">
             <#assign k=1 />

@@ -43,4 +43,9 @@ public class User
 		this.username = username;
 	}
 
+	public User(User user){
+		this.username = user.getUsername();
+		this.userid = user.getUserid();
+		this.id = user.getId();
+	}
 }

@@ -14,4 +14,5 @@ public interface RoleRepository extends PagingAndSortingRepository<Role, Long>
 
 	Set<Role> findByUsers(User user);
 
+	Role findByName(String name);
 }

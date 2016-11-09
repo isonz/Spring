@@ -1,20 +1,18 @@
 package cn.ptp.controller;
 
-import cn.ptp.entity.Department;
 import cn.ptp.entity.User;
 import cn.ptp.service.UserService;
-import com.alibaba.fastjson.JSON;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -26,6 +24,9 @@ public class UserController
     @RequestMapping("/")
     public String index(Model model)
     {
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("username", user.getUsername());
+
         model.addAttribute("items", service.findAll());
         model.addAttribute("depts", service.findAllDept());
         model.addAttribute("roles", service.findAllRole());

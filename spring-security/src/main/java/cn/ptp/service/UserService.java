@@ -34,6 +34,11 @@ public class UserService
 		return repository.findOne(id);
 	}
 
+	public User findByUsername(String username)
+	{
+		return repository.findByUsername(username);
+	}
+
 	public int count()
 	{
 		return (int)repository.count();
@@ -63,7 +68,7 @@ public class UserService
 
 	public User save(User user)
     {
-		repository.findByUsername(user.getUsername()).ifPresent(tuser -> {
+		repository.checkByUsername(user.getUsername()).ifPresent(tuser -> {
 			if(!tuser.equals(user)){
 				throw new IllegalArgumentException("Username 重复!");
 			}
