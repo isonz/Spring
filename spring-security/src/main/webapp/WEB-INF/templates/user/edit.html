@@ -42,7 +42,10 @@
     <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
   </tr>
 </table>
+
 <input type="hidden" name="id" id="id" value="${user.id}" />
+<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+
 </form>
 
 </div>

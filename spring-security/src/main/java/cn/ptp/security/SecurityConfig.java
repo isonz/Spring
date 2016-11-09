@@ -1,4 +1,4 @@
-package cn.ptp;
+package cn.ptp.security;
 
 
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
-    private final MyAuthenticationProvider provider;//自定义验证
+    private final AuthProvider provider;//自定义验证
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{

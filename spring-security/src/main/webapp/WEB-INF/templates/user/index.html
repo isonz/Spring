@@ -1,6 +1,10 @@
 <#include "header.html">
 
-    <div style="text-align: right;">Hello : ${username}
+    <div style="text-align: right;">
+        Hello : ${username} :
+        <#list userroles as role>
+            ${role}
+        </#list>
         <form action="/logout" method="post">
             <input type="submit" value="注销"/>
             <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
@@ -64,7 +68,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
+                    <td colspan="2">
+                        <input type="submit" name="button" id="button" value="提 交" />
+                        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+                    </td>
                 </tr>
             </table>
         </form>

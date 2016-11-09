@@ -1,6 +1,5 @@
-package cn.ptp;
+package cn.ptp.security;
 
-import cn.ptp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,16 +14,16 @@ import java.util.Collection;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MyAuthenticationProvider implements AuthenticationProvider
+public class AuthProvider implements AuthenticationProvider
 {
-    private final UserService userService;
+    private final SecurityUserDetailsService securityUserDetailsService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException
     {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
-        MyUserDetails user = (MyUserDetails) userService.findByUsername(username);
+        SecurityUserDetails user = (SecurityUserDetails) securityUserDetailsService.loadUserByUsername(username);
         if(user == null){
             throw new BadCredentialsException("Username not found.");
         }

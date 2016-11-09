@@ -6,7 +6,10 @@
 <#if username == "">
     <a href="/login" style="font-size: 18px;">请登入</a>
 <#else>
-    Hello : ${username}
+    Hello : ${username} :
+    <#list roles as role>
+        ${role}
+    </#list>
     <form action="/logout" method="post">
         <input type="submit" value="注销"/>
         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>

@@ -1,11 +1,15 @@
 package cn.ptp.controller;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 //@RequestMapping("/")
@@ -15,12 +19,17 @@ public class IndexController
     public String index(Model model)
     {
         String username = "";
+        List<String> authorities = new ArrayList<String>();
         try {
             UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             username = user.getUsername();
+            for(GrantedAuthority authority : user.getAuthorities()) {
+                authorities.add(authority.getAuthority());
+            }
         }catch(Exception e){}
-
         model.addAttribute("username", username);
+        String roles = authorities.toString();
+        model.addAttribute("roles", authorities);
 
         return "index";
     }

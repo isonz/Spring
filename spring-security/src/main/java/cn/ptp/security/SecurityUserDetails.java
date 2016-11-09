@@ -1,4 +1,4 @@
-package cn.ptp;
+package cn.ptp.security;
 
 
 import cn.ptp.entity.Role;
@@ -10,11 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class MyUserDetails extends User implements UserDetails
+public class SecurityUserDetails extends User implements UserDetails
 {
     private List<Role> roles;
 
-    public MyUserDetails(User user, List<Role> roles){
+    public SecurityUserDetails(User user, List<Role> roles){
         super(user);
         this.roles = roles;
     }

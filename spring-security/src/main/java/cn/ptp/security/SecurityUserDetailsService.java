@@ -1,7 +1,6 @@
-package cn.ptp.service;
+package cn.ptp.security;
 
 
-import cn.ptp.MyUserDetails;
 import cn.ptp.entity.Role;
 import cn.ptp.entity.User;
 import cn.ptp.service.RoleService;
@@ -20,7 +19,7 @@ import java.util.List;
 @Transactional
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MyUserDetailsService implements UserDetailsService
+public class SecurityUserDetailsService implements UserDetailsService
 {
 
     private final UserService userService;
@@ -39,7 +38,7 @@ public class MyUserDetailsService implements UserDetailsService
         } else {
             try {
                 List<Role> roles = roleService.findByUser(user);
-                return new MyUserDetails(user, roles);
+                return new SecurityUserDetails(user, roles);
             } catch (Exception e) {
                 throw new UsernameNotFoundException("user role select fail");
             }
