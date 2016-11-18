@@ -27,7 +27,9 @@ public class IndexController
             for(GrantedAuthority authority : user.getAuthorities()) {
                 authorities.add(authority.getAuthority());
             }
-        }catch(Exception e){}
+        }catch(Exception e){
+            System.out.println(e);
+        }
         model.addAttribute("username", username);
         String roles = authorities.toString();
         model.addAttribute("roles", authorities);
