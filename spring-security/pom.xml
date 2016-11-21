@@ -64,14 +64,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 
 		<!-- Compiler -->
@@ -117,13 +111,13 @@
 
 	<repositories>
 		<repository>
-			<id>spring-milestone</id>
+			<id>spring-releases</id>
 			<url>https://repo.spring.io/libs-release</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
-			<id>spring-milestone</id>
+			<id>spring-releases</id>
 			<url>https://repo.spring.io/libs-release</url>
 		</pluginRepository>
 	</pluginRepositories>

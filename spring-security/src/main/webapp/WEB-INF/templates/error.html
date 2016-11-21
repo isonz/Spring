@@ -12,7 +12,11 @@
 </tr>  
 </table>
 
-<div id="errorMessageDiv"><pre>${status} ${error}</pre></div>  
+<div id="errorMessageDiv">
+	<pre>{status}{error}</pre>
+	<div>${url}</div>
+	<div>${exception.message}</div>
+</div>
 
  <script>  
 function showErrorMessage(){  

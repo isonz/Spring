@@ -1,5 +1,6 @@
 package cn.ptp.controller;
 
+import cn.ptp.exception.MyException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,6 +52,12 @@ public class IndexController
     public String test()
     {
         return "This is Test Page...";
+    }
+
+    @RequestMapping("/myerror")
+    public String myerror() throws MyException
+    {
+        throw new MyException("发生错误2");
     }
 
 }
