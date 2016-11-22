@@ -1,6 +1,8 @@
 package cn.ptp.controller;
 
 import cn.ptp.exception.MyException;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,12 +23,16 @@ public class IndexController
     public String index(Model model)
     {
         String username = "";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         List<String> authorities = new ArrayList<String>();
         try {
-            UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            username = user.getUsername();
-            for(GrantedAuthority authority : user.getAuthorities()) {
-                authorities.add(authority.getAuthority());
+            if(!(auth instanceof AnonymousAuthenticationToken)) {
+                UserDetails user = (UserDetails) auth.getPrincipal();
+                username = user.getUsername();
+                //获取权限列表
+                for (GrantedAuthority authority : user.getAuthorities()) {
+                    authorities.add(authority.getAuthority());
+                }
             }
         }catch(Exception e){
             System.out.println(e);
