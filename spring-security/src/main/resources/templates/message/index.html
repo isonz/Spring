@@ -32,7 +32,10 @@
                     <td class="left"><textarea name="msg" id="msg" cols="45" rows="5"></textarea></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
+                    <td colspan="2">
+                        <input type="submit" name="button" id="button" value="提 交" />
+                        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+                    </td>
                 </tr>
             </table>
         </form>
