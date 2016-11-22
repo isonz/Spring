@@ -6,15 +6,15 @@
 <table id="msgadd" width="90%" cellspacing="1" bgcolor="#eee">
   <tr>
     <td width="30%">Open ID</td>
-    <td class="left"><input class="input" type="text" name="openid" id="openid" value="${user.openid}" /></td>
+    <td class="left"><input class="input" type="text" name="openid" id="openid" value="${(user.openid)!}" /></td>
   </tr>
   <tr>
     <td>用户名称</td>
-    <td class="left"><input class="input" name="username" id="username" value="${user.username}" /></td>
+    <td class="left"><input class="input" name="username" id="username" value="${(user.username)!}" /></td>
   </tr>
   <tr>
     <td>用户名称</td>
-    <td class="left"><input class="input" name="userid" id="userid" value="${user.userid}" /></td>
+    <td class="left"><input class="input" name="userid" id="userid" value="${(user.userid)!}" /></td>
   </tr>
   <tr>
     <td>部门</td>
@@ -44,7 +44,7 @@
 </table>
 
 <input type="hidden" name="id" id="id" value="${user.id}" />
-<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+<input type="hidden" name="${_csrf.parameterName}"  value="${(_csrf.token)!}"/>
 
 </form>
 

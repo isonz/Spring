@@ -6,18 +6,18 @@
 <table id="msgadd" width="90%" cellspacing="1" bgcolor="#eee">
   <tr>
     <td width="30%">姓名</td>
-    <td class="left"><input type="text" name="name" id="name" value="${message.getName()}" /></td>
+    <td class="left"><input type="text" name="name" id="name" value="${(message.getName())!}" /></td>
   </tr>
   <tr>
     <td>留言</td>
-    <td class="left"><textarea name="msg" id="msg" cols="45" rows="5">${message.getMsg()}</textarea></td>
+    <td class="left"><textarea name="msg" id="msg" cols="45" rows="5">${(message.getMsg())!}</textarea></td>
   </tr>
   <tr>
     <td colspan="2"><input type="submit" name="button" id="button" value="提 交" /></td>
   </tr>
 </table>
-  <input type="hidden" name="id" id="id" value="${message.getId()}" />
-  <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+  <input type="hidden" name="id" id="id" value="${(message.getId())!}" />
+  <input type="hidden" name="${_csrf.parameterName}"  value="${(_csrf.token)!}"/>
 </form>
 
 </div>
