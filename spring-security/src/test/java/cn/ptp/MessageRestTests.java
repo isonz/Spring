@@ -1,33 +1,31 @@
 package cn.ptp;
 
-import cn.ptp.controller.MessageController;
+import cn.ptp.controller.MessageRestController;
 import cn.ptp.entity.Message;
 import cn.ptp.repository.MessageRepository;
 import cn.ptp.service.MessageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.intThat;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(MessageController.class)
-public class MessageTests
+@WebMvcTest(MessageRestController.class)
+public class MessageRestTests
 {
     @Autowired
     private MockMvc mvc;
@@ -38,15 +36,14 @@ public class MessageTests
     @MockBean
     private MessageRepository messageRepository;
 
-
     @Test
     public void index() throws Exception {
-        this.mvc.perform(get("/message/").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
+        this.mvc.perform(get("/message_rest/")).andExpect(status().isOk()).andExpect((ResultMatcher) content().string(equalTo("[]")));
     }
 
     @Test
     public void paged() throws Exception {
-        this.mvc.perform(get("/message/paged").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
+        this.mvc.perform(get("/message_rest/paged").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
     }
 
     @Test

@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 //@RequestMapping("/")
-public class IndexController
+public class IndexController extends BaseController
 {
     @RequestMapping("/")
     public String index(Model model)
@@ -54,10 +54,11 @@ public class IndexController
     }
 
     @RequestMapping("/test")
-    @ResponseBody
-    public String test()
+    //@ResponseBody
+    public String test(Model model)
     {
-        return "This is Test Page...";
+        asset(model);
+        return "test";
     }
 
     @RequestMapping("/myerror")
