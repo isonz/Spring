@@ -24,7 +24,7 @@ public class MessageController
     private final MessageService service;
 
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model, Message message) {
         model.addAttribute("items", service.findAll());	//addAttribute不允许空值
         return "message/index";
     }
