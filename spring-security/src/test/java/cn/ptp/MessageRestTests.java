@@ -14,13 +14,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyLong;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -36,51 +39,41 @@ public class MessageRestTests
     @MockBean
     private MessageRepository messageRepository;
 
+    RequestBuilder request = null;
+
     @Test
     public void index() throws Exception {
         this.mvc.perform(get("/message_rest/")).andExpect(status().isOk()).andExpect((ResultMatcher) content().string(equalTo("[]")));
     }
 
     @Test
-    public void paged() throws Exception {
-        this.mvc.perform(get("/message_rest/paged").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
+    public void test_all() throws Exception
+    {
+        //get查一下message列表，应该为空
+        request = get("/message_rest/");
+        mvc.perform(request).andExpect(status().isOk()).andExpect((ResultMatcher) content().string(equalTo("[]")));
+
+        //post提交一个message
+        request = post("/message_rest/").param("id", "1").param("name", "测试大师").param("age", "20");
+        this.mvc.perform(request).andExpect((ResultMatcher) content().string(equalTo("success")));
+
+        //get获取message列表，应该有刚才插入的数据
+        request = get("/message_rest/");
+        mvc.perform(request).andExpect(status().isOk()).andExpect((ResultMatcher) content().string(equalTo("[{\"id\":1,\"name\":\"测试大师\",\"age\":20}]")));
+
+        //get一个id为1的essage
+        request = get("/message_rest/1");
+        mvc.perform(request).andExpect((ResultMatcher) content().string(equalTo("{\"id\":1,\"name\":\"测试终极大师\",\"age\":20}]")));
+
+        //del删除id为1的message
+        request = delete("/message_rest/1");
+        mvc.perform(request).andExpect((ResultMatcher) content().string(equalTo("success")));
+
+        //get查一下 message 列表，应该为空
+        request = get("/message_rest/");
+        mvc.perform(request).andExpect(status().isOk()).andExpect((ResultMatcher) content().string(equalTo("[]")));
     }
 
-    @Test
-    public void serPaged() throws Exception{
-        this.messageService = new MessageService(messageRepository);
-        Page<Message> page =this.messageService.paged(new PageRequest(0, 20));
-        given(page.getTotalElements()).willReturn(anyLong());
-    }
 
-    @Test
-    public void json() throws Exception {
-        this.mvc.perform(get("/message/json").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
-    }
-
-    @Test
-    public void add() throws Exception {
-        this.mvc.perform(get("/message/add").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
-    }
-
-    @Test
-    public void delete() throws Exception {
-        this.mvc.perform(get("/message/delete/1").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
-    }
-
-    @Test
-    public void edit() throws Exception {
-        this.mvc.perform(get("/message/edit/1").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
-    }
-
-    @Test
-    public void update() throws Exception {
-        this.mvc.perform(get("/message/update").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
-    }
-
-    @Test
-    public void sql() throws Exception {
-        this.mvc.perform(get("/message/sql").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk());
-    }
 
 }
