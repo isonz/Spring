@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * Created by Ison on 2016/10/21.
  */
-public class Test
+public class Tests
 {
     public static void main(String[] args) {
         //JsonObject和JsonArray区别就是JsonObject是对象形式，JsonArray是数组形式

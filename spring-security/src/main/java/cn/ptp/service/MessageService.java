@@ -9,9 +9,11 @@ import cn.ptp.repository.MessageRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -22,6 +24,9 @@ public class MessageService
 {
 	private final MessageRepository repository;
 
+	public static final String CACHE_KEY = "message";				//缓存的key
+
+	@Cacheable(value = CACHE_KEY)
 	public Message findOne(long id)
 	{
 		Assert.notNull(id, "id must not be null");
@@ -33,6 +38,7 @@ public class MessageService
 		return (int)repository.count();
 	}
 
+	@Cacheable(value = CACHE_KEY)
 	public Page<Message> paged(Pageable pageable)
 	{
 		Assert.notNull(pageable, "Pageable must not be null!");
@@ -41,11 +47,13 @@ public class MessageService
 		return page;
 	}
 
+	@Cacheable(value = CACHE_KEY)
 	public Iterable<Message> findAll()
 	{
 		return repository.findAll();
 	}
 
+	@CachePut(value = CACHE_KEY)		//每次都会真是调用函数，所以主要用于数据新增和修改操作上
 	public Message save(Message message)
     {
 		Assert.hasText(message.getMsg(), "Mst must not be empty!");
@@ -72,12 +80,14 @@ public class MessageService
 		return tmp;
 	}
 
+	@Cacheable(value = CACHE_KEY)
 	public Optional findByName(String name)
 	{
 		Assert.hasText(name, "Name must not be empty!");
 		return repository.findByName(name);
 	}
 
+	@CacheEvict(value = CACHE_KEY)		//清除缓存
 	public boolean delete(long id)
 	{
 		if(!repository.findById(id).isPresent()){

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSON;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,6 +30,7 @@ public class MessageController
         return "message/index";
     }
 
+    @ApiIgnore          //忽略Swagger2
     @RequestMapping(value = "/paged", method = RequestMethod.GET)
     public String paged(@RequestParam(value="pageNum", defaultValue="1") int pageNum, @RequestParam(value="pageSize", defaultValue="20") int count, Model model)
     {
@@ -113,4 +115,18 @@ public class MessageController
         return message.getMsg();
     }
 
+    @ResponseBody
+    @RequestMapping("/eh_cache")
+    public Iterable<Message> eh_cache(Model model, Message message)
+    {
+        message =  service.findOne(37);
+        System.out.println("第一次查询：" + message.getName());
+
+        Message message1 =  service.findOne(84);
+        System.out.println("第二次查询：" + message1.getName());
+
+        Iterable<Message> it = service.findAll();
+        Iterable<Message> it1 = service.findAll();
+        return it;
+    }
 }

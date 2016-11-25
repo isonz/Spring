@@ -11,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 //@RequestMapping("/")
+@ApiIgnore      //忽略Swagger2
 public class IndexController extends BaseController
 {
     @RequestMapping("/")
@@ -66,5 +68,6 @@ public class IndexController extends BaseController
     {
         throw new MyException("发生错误2");
     }
+
 
 }
