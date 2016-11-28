@@ -119,6 +119,12 @@
 					<mainClass>cn.ptp.AppStart</mainClass>
 					<layout>ZIP</layout>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>springloaded</artifactId>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
