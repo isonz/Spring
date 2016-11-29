@@ -6,9 +6,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,8 +17,10 @@ import java.util.Set;
 @Table(name="user")
 @DynamicUpdate
 @DynamicInsert
-public class User
+public class User implements Serializable			//需要在REDIS里存储对象的话就需要实现序列化
 {
+	private static final long serialVersionUID = -1L;
+
 	@Getter @Setter private @GeneratedValue @Id Long id;
 	@Getter @Setter private String openid;
 	@Getter @Setter private String userid;

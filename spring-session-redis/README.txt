@@ -1,9 +1,9 @@
-´ËÏîÄ¿°üÀ¨ÈçÏÂ¹¦ÄÜ¡£
+æ­¤é¡¹ç›®åŒ…æ‹¬å¦‚ä¸‹åŠŸèƒ½ã€‚
 
-1¡¢Spring Security
-2¡¢Springload
-3¡¢FreemarkerÄ£°åÒýÇæäÖÈ¾webÊÓÍ¼
-4¡¢Í³Ò»Òì³£´¦Àí
-5¡¢Ê¹ÓÃSpring-data-jpa
-6¡¢Ä¬ÈÏÈÕÖ¾µÄÅäÖÃ
-7¡¢RESTful ·ç¸ñ
+1ã€Spring Security
+2ã€Springload
+3ã€Freemarkeræ¨¡æ¿å¼•æ“Žæ¸²æŸ“webè§†å›¾
+4ã€ç»Ÿä¸€å¼‚å¸¸å¤„ç†
+5ã€ä½¿ç”¨Spring-data-jpa
+6ã€é»˜è®¤æ—¥å¿—çš„é…ç½®
+7ã€RESTful é£Žæ ¼

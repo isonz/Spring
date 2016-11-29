@@ -1,15 +1,15 @@
-´ËÏîÄ¿°üÀ¨ÈçÏÂ¹¦ÄÜ¡£
+æ­¤é¡¹ç›®åŒ…æ‹¬å¦‚ä¸‹åŠŸèƒ½ã€‚
 
-1¡¢Spring Security
-2¡¢Springload
-3¡¢EnableScheduling (¶¨Ê±Æ÷)
-4¡¢EnableAsync  (Òì²½)
-5¡¢EnableCaching £¨¶ÔÊý¾Ý¿â²Ù×÷»º´æ£©
-6¡¢AOPÍ³Ò»´¦ÀíWebÇëÇóÈÕÖ¾
-7¡¢ÅäÖÃÎÄ¼þµÄ×Ô¶¨ÒåÊôÐÔ¡¢Ëæ»úÊý
-8¡¢RESTful ·ç¸ñ
-9¡¢FreemarkerÄ£°åÒýÇæäÖÈ¾webÊÓÍ¼
-10¡¢Í³Ò»Òì³£´¦Àí
-11¡¢Ê¹ÓÃSwagger2¹¹½¨RESTful API
-12¡¢Ê¹ÓÃSpring-data-jpa
-13¡¢Ä¬ÈÏÈÕÖ¾µÄÅäÖÃ
+1ã€Spring Security
+2ã€Springload
+3ã€EnableScheduling (å®šæ—¶å™¨)
+4ã€EnableAsync  (å¼‚æ­¥)
+5ã€EnableCaching ï¼ˆå¯¹æ•°æ®åº“æ“ä½œç¼“å­˜ï¼‰
+6ã€AOPç»Ÿä¸€å¤„ç†Webè¯·æ±‚æ—¥å¿—
+7ã€é…ç½®æ–‡ä»¶çš„è‡ªå®šä¹‰å±žæ€§ã€éšæœºæ•°
+8ã€RESTful é£Žæ ¼
+9ã€Freemarkeræ¨¡æ¿å¼•æ“Žæ¸²æŸ“webè§†å›¾
+10ã€ç»Ÿä¸€å¼‚å¸¸å¤„ç†
+11ã€ä½¿ç”¨Swagger2æž„å»ºRESTful API
+12ã€ä½¿ç”¨Spring-data-jpa
+13ã€é»˜è®¤æ—¥å¿—çš„é…ç½®

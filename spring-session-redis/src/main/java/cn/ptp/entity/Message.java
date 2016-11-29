@@ -1,5 +1,6 @@
 package cn.ptp.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -24,8 +25,10 @@ import javax.persistence.Table;
 @Table(name="message")
 @DynamicUpdate
 @DynamicInsert
-public class Message
+public class Message implements Serializable            //需要在REDIS里存储对象的话就需要实现序列化
 {
+	private static final long serialVersionUID = -1L;
+
 	@Getter @Setter private @GeneratedValue @Id Long id;
 	@Getter private String name;
 	@Getter @Setter private String msg;
