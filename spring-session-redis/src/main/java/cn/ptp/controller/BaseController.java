@@ -21,9 +21,6 @@ public class BaseController
     {
         model.addAttribute("__PUBLIC__", _public_);
         model.addAttribute("__ASSET__", _asset_);
-
-        System.out.println(value);
-        System.out.println(rang);
     }
 
 }

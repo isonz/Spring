@@ -19,10 +19,10 @@ public interface MessageRepository extends PagingAndSortingRepository<Message, L
 	@Query(value = "select m.* from message m where m.name = ?1", nativeQuery = true)
 	Message findName(String name);
 
-	@Cacheable(key = "#message")
+	@Cacheable
 	Iterable<Message> findAll();
 
-	@CachePut(key = "#message")
+	@CachePut
 	Message save(Message message);
 
 }
