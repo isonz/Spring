@@ -1,6 +1,7 @@
 package cn.ptp.controller;
 
 import cn.ptp.entity.Message;
+import cn.ptp.exception.MyException;
 import cn.ptp.service.MessageService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -30,11 +31,11 @@ public class MessageController
     }
 
     @RequestMapping(value = "/paged", method = RequestMethod.GET)
-    public String paged(@RequestParam(value="pageNum", defaultValue="1") int pageNum, @RequestParam(value="pageSize", defaultValue="20") int count, Model model)
-    {
-
-        int start = (pageNum - 1) * count;
-        Page<Message> page = service.paged(new PageRequest(start, count));
+    public String paged(@RequestParam(value="pageNum", defaultValue="1") int pageNum, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model){
+        if(pageNum < 1) pageNum = 1;
+        pageNum = pageNum -1;
+        if(pageSize < 1) pageSize = 1;
+        Page<Message> page = service.paged(new PageRequest(pageNum, pageSize));
         long total = page.getTotalElements();
         int allpage = page.getTotalPages();
         Iterator<Message> items = page.iterator();
