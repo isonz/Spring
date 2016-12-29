@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 //@RequestMapping("/")
-public class IndexController
+public class IndexController extends BaseController
 {
 
     @RequestMapping("/login")

@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,13 @@ public class UserController
     {
         String username = "";
         List<String> authorities = new ArrayList<String>();
+        try {
+            UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            username = user.getUsername();
+            for(GrantedAuthority authority : user.getAuthorities()) {
+                authorities.add(authority.getAuthority());
+            }
+        }catch(Exception e){}
         String roles = authorities.toString();
         model.addAttribute("username", username);
         model.addAttribute("userroles", authorities);

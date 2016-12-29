@@ -3,21 +3,20 @@ package cn.ptp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-//import org.springframework.boot.web.servlet.ErrorPage;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.boot.web.servlet.ErrorPage;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
-@EnableEurekaServer
+@EnableDiscoveryClient
 @SpringBootApplication
-public class EurekaServer {
+public class ClientTest1 {
 
 	public static void main(String[] args)
 	{
-		SpringApplication.run(EurekaServer.class, args);
+		SpringApplication.run(ClientTest1.class, args);
 	}
 
-	/*
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 
@@ -29,5 +28,5 @@ public class EurekaServer {
 			container.addErrorPages(error401Page, error404Page, error500Page);
 		});
 	}
-	*/
+
 }
