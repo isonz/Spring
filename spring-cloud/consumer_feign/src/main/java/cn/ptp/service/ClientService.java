@@ -6,9 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("client-test")
+@FeignClient(value = "CLIENT-TEST", fallback = ClientServiceHystrix.class)
 public interface ClientService
 {
     @RequestMapping(value = "/client/add", method = RequestMethod.GET)
     Integer add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b);
 }
+
+/*
+@FeignClient(value = "CLIENT-TEST")
+public interface ClientService
+{
+    @RequestMapping(value = "/client/add", method = RequestMethod.GET)
+    Integer add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b);
+}
+*/

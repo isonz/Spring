@@ -1,5 +1,6 @@
 package cn.ptp.controller;
 
+import cn.ptp.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class ClientController
     private final RestTemplate restTemplate;
     private final DiscoveryClient client;
 
-    @RequestMapping(value = "/add" ,method = RequestMethod.GET)
-    public String add() {
+    @RequestMapping(value = "/add1" ,method = RequestMethod.GET)
+    public String add1() {
         System.out.println("test");
         //ResponseEntity<String> response = restTemplate.getForEntity("http://CONSUMER-RIBBON/client/addd?a=10&b=20", String.class);
         ResponseEntity<String> response = restTemplate.getForEntity("http://CLIENT-TEST/client/add?a=10&b=20", String.class);
@@ -38,6 +39,15 @@ public class ClientController
         Integer r = a + b;
         logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
         return r;
+    }
+
+
+    @Autowired
+    private ClientService clientService;
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add() {
+        return clientService.addService();
     }
 
 }
