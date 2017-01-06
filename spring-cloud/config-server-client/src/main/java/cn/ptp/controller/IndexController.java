@@ -17,12 +17,9 @@ public class IndexController extends BaseController
         return this.from;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getFrom() {
-        return from;
+    @RequestMapping("/fresh")
+    public String refresh(){
+        return "<form action='/refresh' method='post'><input type='submit' /></form>";
     }
 
 }
