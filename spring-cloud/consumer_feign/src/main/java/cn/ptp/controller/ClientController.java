@@ -15,8 +15,8 @@ public class ClientController
 {
     private final ClientService clientService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public Integer add() {
+    @RequestMapping(value = "/adds", method = RequestMethod.GET)
+    public Integer adds() {
         System.out.println("feign client add 20, 30");
         Integer result = clientService.add(20, 30);
         return result;

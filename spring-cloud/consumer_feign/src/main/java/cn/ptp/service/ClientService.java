@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "CLIENT-TEST", fallback = ClientServiceHystrix.class)
 public interface ClientService
 {
+    //value = "/client/add" 为CLIENT-TEST的客户端资源路径
     @RequestMapping(value = "/client/add", method = RequestMethod.GET)
     Integer add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b);
 }
