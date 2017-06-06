@@ -1,0 +1,22 @@
+<#include "header.html">
+
+<br><br>
+
+<#if error == 1>
+<div style="text-align: center; color: #FF0000">用户名或密码出错</div>
+</#if>
+
+<#if logout == 1>
+<div style="text-align: center; color: #FF0000">您已注销成功</div>
+</#if>
+
+<div style="font-size: 16px; text-align: center;">
+    <form action="/login" method="post">
+        <div><label> 账 号 : <input type="text" name="username"/> </label></div> <br>
+        <div><label> 密 码 : <input type="password" name="password"/> </label></div><br>
+        <div><input type="submit" value="登录"/></div>
+        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+    </form>
+</div>
+
+<#include "footer.html">
