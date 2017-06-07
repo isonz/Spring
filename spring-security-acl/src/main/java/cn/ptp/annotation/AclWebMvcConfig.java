@@ -15,3 +15,6 @@ public class AclWebMvcConfig extends WebMvcConfigurerAdapter
         registry.addInterceptor(new AclInterceptor());
     }
 }
+
+
+//https://my.oschina.net/wangnian/blog/758711
