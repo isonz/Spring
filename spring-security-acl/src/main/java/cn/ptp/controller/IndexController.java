@@ -1,5 +1,6 @@
 package cn.ptp.controller;
 
+import cn.ptp.annotation.RequestLimit;
 import cn.ptp.exception.MyException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,9 @@ import java.util.List;
 @ApiIgnore      //忽略Swagger2
 public class IndexController extends BaseController
 {
+    @RequestLimit(count=1, time = 2000)      //限制每秒最多请求数
     @RequestMapping("/")
-    public String index(Model model)
+    public String index(HttpServletRequest request, Model model)
     {
         String username = "";
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
