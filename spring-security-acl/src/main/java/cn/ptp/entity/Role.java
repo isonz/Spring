@@ -3,13 +3,11 @@ package cn.ptp.entity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+
 
 @Entity
 @RequiredArgsConstructor                            //仅针对final系列强制初始化

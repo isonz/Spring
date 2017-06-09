@@ -5,11 +5,9 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
 
 @Entity
 @RequiredArgsConstructor							//仅针对final系列强制初始化  

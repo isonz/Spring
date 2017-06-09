@@ -5,14 +5,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
-
 @Aspect
 @Component
 public class AclInterceptor
 {
     private Logger logger = Logger.getLogger(getClass());
 
-    @Before(value = "within(@org.springframework.stereotype.Controller *) && @annotation(acl)")
+    @Before("within(@org.springframework.stereotype.Controller *) && @annotation(acl)")
+    //@Before(value = "within(@javax.persistence.Entity *) && @annotation(acl)")
     public void aclCtl(Acl acl) throws AclWebException,AclJsonException{
         try {
             String chmod = acl.chmod();
@@ -20,10 +20,12 @@ public class AclInterceptor
             System.out.println(chmod);
             System.out.println(chown);
 
-            if(true) {
-                throw new AclWebException();
-            }else {
-                throw new AclJsonException();
+            if(false) {
+                if (true) {
+                    throw new AclWebException();
+                } else {
+                    throw new AclJsonException();
+                }
             }
         } catch (AclWebException | AclJsonException e) {
             throw e;

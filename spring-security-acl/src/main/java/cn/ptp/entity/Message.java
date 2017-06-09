@@ -3,6 +3,7 @@ package cn.ptp.entity;
 import java.util.Date;
 
 
+import cn.ptp.annotation.Acl;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @RequiredArgsConstructor							//仅针对final系列强制初始化  

@@ -1,7 +1,6 @@
 package cn.ptp.controller;
 
 import cn.ptp.annotation.Acl;
-import cn.ptp.exception.JsonException;
 import cn.ptp.exception.WebException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,12 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
 //@RequestMapping("/")
 @ApiIgnore      //忽略Swagger2
 public class IndexController extends BaseController
 {
-    @Acl(chmod = "R,R,R", chown = "ison:ison")
+    @Acl(chmod = "R.R.R", chown = "ison:ison")
     @RequestMapping("/")
     public String index(HttpServletRequest request, Model model)
     {
@@ -74,8 +74,6 @@ public class IndexController extends BaseController
         throw new WebException("发生错误2");
     }
 
-
-    @Acl(chmod = "R,R,R", chown = "ison:ison")
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody
     public String hello(@RequestParam String name){
