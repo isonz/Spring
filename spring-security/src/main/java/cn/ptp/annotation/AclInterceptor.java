@@ -57,7 +57,7 @@ public class AclInterceptor extends HandlerInterceptorAdapter
 
                     //进行角色访问的权限控制，只有当前用户是需要的角色才予以访问。
                     boolean isEquals = curUserType.equals("user");
-                    if(!isEquals){
+                    if(isEquals){
                         throw new AclException();
 
                         //401未授权访问

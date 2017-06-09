@@ -8,24 +8,29 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler
+{
+    @ExceptionHandler(value = WebException.class)
+    public ModelAndView defaultErrorHandler(HttpServletRequest req, WebException e) throws Exception {
+        ErrorInfo<String> r = new ErrorInfo<>();
+        r.setMessage(e.getMessage());
+        r.setCode(ErrorInfo.ERROR);
+        r.setData(req.getQueryString());
+        r.setUrl(req.getRequestURL().toString());
 
-    @ExceptionHandler(value = Exception.class)
-    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("exception", e);
-        mav.addObject("url", req.getRequestURL());
+        mav.addObject("err", r);
         mav.setViewName("error");
         return mav;
     }
 
-    @ExceptionHandler(value = MyException.class)
+    @ExceptionHandler(value = JsonException.class)
     @ResponseBody
-    public ErrorInfo<String> jsonErrorHandler(HttpServletRequest req, MyException e) throws Exception {
+    public ErrorInfo<String> jsonErrorHandler(HttpServletRequest req, JsonException e) throws Exception {
         ErrorInfo<String> r = new ErrorInfo<>();
         r.setMessage(e.getMessage());
         r.setCode(ErrorInfo.ERROR);
-        r.setData(req.getRequestURI());
+        r.setData(req.getQueryString());
         r.setUrl(req.getRequestURL().toString());
         return r;
     }

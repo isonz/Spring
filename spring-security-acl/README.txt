@@ -12,4 +12,5 @@
 10、统一异常处理
 11、使用Swagger2构建RESTful API
 12、使用Spring-data-jpa
-13、默认日志的配置
+13、默认日志的配置 （完整版）
+14、ACL控制

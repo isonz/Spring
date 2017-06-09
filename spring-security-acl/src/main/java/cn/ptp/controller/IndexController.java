@@ -1,9 +1,8 @@
 package cn.ptp.controller;
 
 import cn.ptp.annotation.Acl;
-import cn.ptp.annotation.RequestLimit;
-import cn.ptp.exception.MyException;
-import org.springframework.context.annotation.ComponentScan;
+import cn.ptp.exception.JsonException;
+import cn.ptp.exception.WebException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,14 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-@Acl(chmod = "R,R,R", chown = "system:system")
 @Controller
 //@RequestMapping("/")
 @ApiIgnore      //忽略Swagger2
 public class IndexController extends BaseController
 {
-    @RequestLimit(count=20, time = 2000)      //限制每秒最多请求数
-    //@Acl(chmod = "R,R,R", chown = "ison:ison")
+    @Acl(chmod = "R,R,R", chown = "ison:ison")
     @RequestMapping("/")
     public String index(HttpServletRequest request, Model model)
     {
@@ -72,14 +69,16 @@ public class IndexController extends BaseController
     }
 
     @RequestMapping("/myerror")
-    public String myerror() throws MyException
+    public String myerror() throws WebException
     {
-        throw new MyException("发生错误2");
+        throw new WebException("发生错误2");
     }
 
+
+    @Acl(chmod = "R,R,R", chown = "ison:ison")
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody
-    public String hello(@RequestParam String name) {
+    public String hello(@RequestParam String name){
         return "Hello " + name;
     }
 

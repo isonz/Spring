@@ -13,4 +13,6 @@
 11、使用Swagger2构建RESTful API
 12、使用Spring-data-jpa
 13、默认日志的配置
-14、自定义 @RequestLimit(count=1, time = 2000)      //限制每秒最多请求数
+
+14、自定义 @RequestLimit(count=1, time = 2000)      	//限制每秒最多请求数
+14、自定义 @Acl(chmod="R,R,R", chown="ison:message") //控制器级别和方法级别ACL鉴权控制
