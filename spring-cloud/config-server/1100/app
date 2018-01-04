@@ -1,0 +1,55 @@
+#!/bin/bash
+
+port=1100
+file=./config-server.jar
+
+start(){  
+# now=`date "+%Y%m%d%H%M%S"`  
+ now=`date "+%Y%m%d"`  
+ exec java -Xms256m -Xmx512m -jar $file 5 >>./logs/"$now".log &  
+}
+ 
+##基于端口的停止 
+stop(){
+ netstat -lnp|grep $port|awk '{print $7}'|while read pid
+ do
+    rs=$(echo $pid | grep "java")
+    if [[ "$rs" != "" ]];then
+        ppid=${pid/\/java/}
+        kill $ppid
+        echo "PID:" $ppid "Stoped For Port:" $port " IN " $pid
+        break;
+    fi
+ done
+}
+
+##基于文件名的停止
+#stop(){
+# ps -ef|grep java|awk '{print $2 $12}'|while read pid
+# do
+#    if [[ $pid =~ $file ]];then
+#        ppid=${pid/$file/}
+#        kill $ppid
+#        echo "PID:" $ppid "Stoped."
+#		break;
+#    fi  
+# done   
+#}   
+
+case "$1" in  
+start)  
+start  
+;;  
+stop)  
+stop  
+;;  
+restart)  
+stop  
+start  
+;;  
+*)  
+printf 'Usage: %s {start|stop|restart}\n' "$prog"  
+exit 1  
+;;  
+esac
+
